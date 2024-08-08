@@ -1,0 +1,120 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Tickets</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    {% block extra_head_content %}
+
+    {% endblock %}
+
+
+</head>
+
+<body>
+
+{% if is_customer %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">HOME</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/ticket/createTicket">Create Ticket</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="/ticket/allAvailableTickets">View Available Tickets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/ticket/purchasedTickets">Purchased Tickets</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="/ticket">View Own Tickets</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{request.user.username}}</a>
+                </li>
+            </ul>
+            <div class="ml-auto">
+                <a href="/logout" class="btn btn-primary me-2">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+{% elif is_employee %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">PPM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link active" href="/ticket/queue">Ticket queue</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{request.user.username}}</a>
+                </li>
+            </ul>
+            <div class="ml-auto">
+                <a href="/logout" class="btn btn-primary me-2">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+{% endif %}
+
+<div class="container mt-5">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} mx-auto" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    {% block content %}
+    {% endblock content %}
+</div>
+
+<!-- Bootstrap JS and dependencies (Popper.js and jQuery) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+        user = "{{ request.user }}";
+        idUser = "{{ request.user.id}}"
+    });
+</script>
+
+{% block scriptArea %}
+
+{% endblock scriptArea %}
+
+
+</body>
+</html>

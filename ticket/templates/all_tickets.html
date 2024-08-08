@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head_content %}
+{{ block.super }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="card mx-auto" style="width: 76rem;">
+    <div class="card-body">
+        <h5 class="card-title mb-3">Ticket queue</h5>
+
+        <table class="table table-boarded" id="ticketTable">
+            <thead>
+                <tr>
+                    <th scope="col">Ticket ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Quantity Available</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Update Ticket</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be added dynamically here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="updateTicketModal" tabindex="-1" aria-labelledby="updateTicketModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateTicketModalLabel">Update Ticket</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="updateTicketForm">
+            <input type="hidden" id="ticket_id">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="Edittitle" required>
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input type="number" class="form-control" id="Editprice" required>
+            </div>
+            <div class="mb-3">
+              <label for="date" class="form-label">Date</label>
+              <input type="date" class="form-control" id="Editdate" required>
+            </div>
+            <div class="mb-3">
+              <label for="time" class="form-label">Time</label>
+              <input type="time" class="form-control" id="Edittime" required>
+            </div>
+            <div class="mb-3">
+              <label for="location" class="form-label">Location</label>
+              <input type="text" class="form-control" id="Editlocation" required>
+            </div>
+            <div class="mb-3">
+              <label for="quantity_available" class="form-label">Quantity Available</label>
+              <input type="number" class="form-control" id="Editquantity_available" required>
+            </div>
+            <button type="button" class="btn btn-primary" id="saveChangesButton">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock content %}
+
+
+{% block scriptArea %}
+
+<script src="{% static 'all_tickets.js' %}"></script>
+
+{% endblock %}

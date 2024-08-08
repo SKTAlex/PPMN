@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head_content %}
+{{ block.super }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="card mx-auto" style="width: 76rem;">
+    <div class="card-body">
+        <h5 class="card-title mb-3">Available Tickets</h5>
+
+        <table class="table table-bordered" id="ticketTable">
+            <thead>
+                <tr>
+                    <th scope="col">Ticket ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Quantity Available</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Purchase</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be dynamically added here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentModalLabel">Payment Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div method="POST" id="payment-form">
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">Quantity</label>
+                        <input type="text" id="quantity" name="quantity" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="card_name" class="form-label">Name on Card</label>
+                        <input type="text" id="card_name" name="card_name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="card_number" class="form-label">Card Number</label>
+                        <input type="text" id="card_number" name="card_number" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="card_expiry" class="form-label">Expiry Date</label>
+                        <input type="text" id="card_expiry" name="card_expiry" class="form-control" placeholder="MM/YY" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="card_cvv" class="form-label">CVV</label>
+                        <input type="text" id="card_cvv" name="card_cvv" class="form-control" required>
+                    </div>
+                    <button  id="buy" class="btn btn-primary">Buy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+{% block scriptArea %}
+
+<script src="{% static 'all_available_tickets.js' %}"></script>
+
+{% endblock %}

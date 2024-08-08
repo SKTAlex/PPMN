@@ -1,12 +1,11 @@
-from rest_framework.routers import DefaultRouter
+from django.urls import path, include
+
 from . import views
 
-router = DefaultRouter()
-router.register('ticketByuser',views.TicketDetailByUser, basename='ticketbyuser')
-router.register('ticketPurchase',views.PurchasedTickets, basename='ticketPurchase')
-router.register('available',views.AllAvailableTickets, basename='available')
-router.register('acceptTicket',views.AcceptTicket, basename='acceptTicket')
-router.register('queue',views.TicketQueue, basename='queue')
-router.register('buy',views.BuyTicket, basename='buy')
-router.register('',views.TicketDetail, basename='')
-urlpatterns=router.urls
+urlpatterns = [
+    path('', views.all_tickets),
+    path('createTicket', views.create_tickets),
+    path('updateTicket', views.update_tickets),
+    path('allAvailableTickets', views.all_available),
+    path('queue', views.queue),
+]

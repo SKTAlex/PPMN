@@ -1,0 +1,46 @@
+{% extends 'base_login.html' %}
+{% load static %}
+
+
+{% block extra_head_content %}
+{{ block.super }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="card mx-auto custom-card">
+    <div class="card-body">
+        <h5 class="card-title mb-4 text-center">Register as a Customer</h5>
+        <div>
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="exampleinputEmail1" class="form-label">Email</label>
+                <input type="email" class="form-control" id="exampleinputEmail1" placeholder="Enter your email" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleinputUsername1" class="form-label">Username</label>
+                <input type="text" class="form-control" id="exampleinputUsername1" placeholder="Enter your username" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleinputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleinputPassword1" placeholder="Enter your password" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleinputPassword2" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="exampleinputPassword2" placeholder="Confirm your password" required>
+            </div>
+            <button class="btn btn-primary w-100 custom-btn" id="submit">Submit</button>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block scriptArea %}
+
+<script src="{% static 'register_customer.js' %}"></script>
+
+{% endblock %}

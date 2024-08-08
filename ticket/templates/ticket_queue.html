@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head_content %}
+{{ block.super }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="card mx-auto" style="width: 76rem;">
+    <div class="card-body">
+        <h5 class="card-title mb-3">Ticket Queue</h5>
+
+        <table class="table table-bordered" id="ticketQueueTable">
+            <thead>
+                <tr>
+                    <th scope="col">Ticket ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Created by</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be dynamically added here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block scriptArea %}
+
+<script src="{% static 'ticket_queue.js' %}"></script>
+
+{% endblock %}
